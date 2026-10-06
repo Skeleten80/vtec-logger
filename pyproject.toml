@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "honda-diag"
+version = "0.1.0"
+description = "Free, open-source OBD-II diagnostic prober for Honda vehicles on ISO 9141-2 K-Line (e.g. 2007 Accord K24A8)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Skeleten80" }]
+dependencies = ["pyserial>=3.5"]
+
+[project.scripts]
+honda-diag = "hondadiag.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["hondadiag*"]
