@@ -1,6 +1,6 @@
 import pytest
 
-from hondadiag import protocols
+from vteclogger import protocols
 
 
 def test_iso9141_tried_first():

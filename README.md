@@ -1,4 +1,4 @@
-# honda-diag
+# vtec-logger
 
 Free, open-source OBD-II diagnostic tooling for Honda vehicles on
 **ISO 9141-2 K-Line** — e.g. a 2007 Honda Accord with the K24A8 2.4L
@@ -35,7 +35,7 @@ or reprogramming command. It cannot brick your ECU.
 ## Install
 
 ```bash
-cd honda-diag
+cd vtec-logger
 python3 -m venv .venv
 .venv/bin/pip install -e .
 ```
@@ -44,28 +44,28 @@ python3 -m venv .venv
 
 ```bash
 # find the adapter's serial port
-.venv/bin/honda-diag ports
+.venv/bin/vtec-logger ports
 
 # probe everything, log to probe-<timestamp>.jsonl
-.venv/bin/honda-diag probe --port /dev/ttyUSB0
+.venv/bin/vtec-logger probe --port /dev/ttyUSB0
 
 # probe only one attempt
-.venv/bin/honda-diag probe --port /dev/ttyUSB0 --attempt iso9141_5baud
+.venv/bin/vtec-logger probe --port /dev/ttyUSB0 --attempt iso9141_5baud
 
 # read MIL status + stored + pending DTCs (read-only)
-.venv/bin/honda-diag dtc --port /dev/ttyUSB0
+.venv/bin/vtec-logger dtc --port /dev/ttyUSB0
 
 # read the VIN
-.venv/bin/honda-diag vin --port /dev/ttyUSB0
+.venv/bin/vtec-logger vin --port /dev/ttyUSB0
 
 # poll live data (10 polls, 1 s apart, also to CSV)
-.venv/bin/honda-diag live --port /dev/ttyUSB0 --count 10 --csv live-20261006.csv
+.venv/bin/vtec-logger live --port /dev/ttyUSB0 --count 10 --csv live-20261006.csv
 
 # raw Honda mode $22 query (experimental, logged, not decoded)
-.venv/bin/honda-diag honda22 --port /dev/ttyUSB0 --pid 0001
+.venv/bin/vtec-logger honda22 --port /dev/ttyUSB0 --pid 0001
 
 # best-effort decode of a saved log
-.venv/bin/honda-diag decode-log probe-20261006-120000.jsonl
+.venv/bin/vtec-logger decode-log probe-20261006-120000.jsonl
 ```
 
 Probe attempts:

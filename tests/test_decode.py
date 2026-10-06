@@ -1,6 +1,6 @@
 """Decoder tests. Expected values are straight SAE J1979 formulas."""
 
-from hondadiag import decode
+from vteclogger import decode
 
 
 def ex(tx, rx):

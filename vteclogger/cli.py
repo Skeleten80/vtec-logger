@@ -1,4 +1,4 @@
-"""honda-diag command line interface.
+"""vtec-logger command line interface.
 
 v0.1 is deliberately READ-ONLY: probe the port, read DTCs, read the VIN,
 poll live data, query Honda mode $22. There is intentionally NO
@@ -80,7 +80,7 @@ def _probe(args) -> int:
     names = args.attempt if args.attempt else None
     stamp = time.strftime("%Y%m%d-%H%M%S")
     out = args.out or f"probe-{stamp}.jsonl"
-    print(f"honda-diag v{__version__}: probing {args.port} @ {args.baud} baud")
+    print(f"vtec-logger v{__version__}: probing {args.port} @ {args.baud} baud")
     print("Ignition ON (engine can be off for codes, running for live data).")
     records = prober.run_probe(
         port=args.port,
@@ -115,7 +115,7 @@ def _dtc(args) -> int:
     if args.out:
         prober.append_jsonl(records, args.out)
         print(f"logged -> {args.out}")
-    print(f"honda-diag v{__version__}: DTC read on {args.protocol} (read-only, nothing cleared)\n")
+    print(f"vtec-logger v{__version__}: DTC read on {args.protocol} (read-only, nothing cleared)\n")
     for rec in records:
         if rec.phase == "payload":
             _print_exchange(rec.tx, rec.rx)
@@ -148,7 +148,7 @@ def _live(args) -> int:
         csv_fh = open(args.csv, "a", newline="", encoding="utf-8")
         writer = csv.writer(csv_fh)
         writer.writerow(["ts", "pid", "decoded_json"])
-    print(f"honda-diag v{__version__}: live polling {len(pids)} PIDs (read-only). Ctrl-C stops.\n")
+    print(f"vtec-logger v{__version__}: live polling {len(pids)} PIDs (read-only). Ctrl-C stops.\n")
     try:
         count = 0
         while args.count == 0 or count < args.count:
@@ -190,7 +190,7 @@ def _honda22(args) -> int:
     stamp = time.strftime("%Y%m%d-%H%M%S")
     out = args.out or f"honda22-{stamp}.jsonl"
     prober.append_jsonl(records, out)
-    print(f"honda-diag v{__version__}: mode $22 query (experimental, read-only)")
+    print(f"vtec-logger v{__version__}: mode $22 query (experimental, read-only)")
     print(f"logged -> {out}\n")
     for rec in records:
         if rec.phase == "payload":
@@ -230,7 +230,7 @@ def _add_session_args(parser) -> None:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(
-        prog="honda-diag",
+        prog="vtec-logger",
         description="Free OBD-II diagnostic tool for Honda vehicles on ISO 9141-2 (v0.1: read-only discovery instrument).",
     )
     sub = parser.add_subparsers(dest="cmd", required=True)

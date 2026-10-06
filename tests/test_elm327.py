@@ -1,6 +1,6 @@
 import pytest
 
-from hondadiag.elm327 import ELM327, ELM327Error
+from vteclogger.elm327 import ELM327, ELM327Error
 
 from fake_serial import FakeSerial
 

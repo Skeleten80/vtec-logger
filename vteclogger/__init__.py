@@ -1,4 +1,4 @@
-"""honda-diag: free OBD-II diagnostic tooling for Honda vehicles on ISO 9141-2.
+"""vtec-logger: free OBD-II diagnostic tooling for Honda vehicles on ISO 9141-2.
 
 v0.1 is a *discovery instrument* for 2000s Hondas (e.g. the 2007 Accord
 with the K24A8): it probes the car's diagnostic port with every init

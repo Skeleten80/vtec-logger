@@ -1,5 +1,5 @@
-from hondadiag import prober, protocols
-from hondadiag.elm327 import ELM327
+from vteclogger import prober, protocols
+from vteclogger.elm327 import ELM327
 
 from fake_serial import FakeSerial
 

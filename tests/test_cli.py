@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from hondadiag import cli, prober
-from hondadiag.elm327 import ELM327
+from vteclogger import cli, prober
+from vteclogger.elm327 import ELM327
 
 from fake_serial import FakeSerial
 
